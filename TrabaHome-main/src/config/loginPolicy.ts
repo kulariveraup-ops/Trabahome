@@ -1,0 +1,3 @@
+export const LOGIN_MAX_ATTEMPTS = 5;
+export const LOGIN_LOCKOUT_SECONDS = 30;
+export const LOGIN_LOCKOUT_STORAGE_VERSION = "v1";

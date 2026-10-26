@@ -138,7 +138,17 @@ export default function AdminLogin() {
 
       const resolvedEmail = (result?.email || trimmedEmail).toLowerCase();
 
-      // ALWAYS require OTP verification for admin: open OTP modal
+      if (result?.token) {
+        clearLockout();
+        saveAdminSession({
+          token: result.token,
+          email: resolvedEmail,
+          admin: result.admin ?? null,
+        });
+        navigate("/admin-dashboard", { replace: true });
+        return;
+      }
+
       clearLockout();
       setPendingEmail(resolvedEmail);
       setPendingOtpId(String(result?.otpId || ""));
